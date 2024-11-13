@@ -7,7 +7,6 @@ import ItemDetailContainer from "./components/pages/itemDetail/ItemDetailContain
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import CartContainer from "./components/pages/cart/CartContainer";
-import Events from "./components/pages/events/events";
 import { CartContextProvider } from "./context/CartContext";
 import { Toaster } from "sonner";
 import CheckoutContainer from "./components/pages/checkout/CheckoutContainer";
@@ -17,7 +16,7 @@ function App() {
   const [darkMode, setDarkMode] = useState(true); //boolean
 
   return (
-    <div style={{ backgroundColor: darkMode ? "#856c67" : "white" }}>
+    <div style={{ backgroundColor: darkMode ? "#c4a061" : "white" }}>
       {/* routing system*/}
       <BrowserRouter>
         {/* Here you can set toaster default props */}
@@ -40,9 +39,6 @@ function App() {
             />
             {/* checkout route */}
             <Route path={"/checkout"} element={<CheckoutContainer />} />
-
-            {/* events route */}
-            <Route path={"/events"} element={<Events />} />
 
             {/* Dinamic route "/:" */}
             <Route path={"*"} element={<h2>404 not found</h2>} />

@@ -9,6 +9,7 @@ const CheckoutContainer = () => {
     name: "",
     phone: "",
     email: "",
+    address: "",
   });
 
   const [orderId, setOrderId] = useState(null);
@@ -21,8 +22,6 @@ const CheckoutContainer = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    setIsLoading(true);
 
     //Saving order to Firebase
     let total = getTotalAmount();

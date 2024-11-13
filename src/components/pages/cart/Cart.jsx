@@ -1,69 +1,69 @@
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import "./Cart.css";
 
 const Cart = ({ cart, clearCart, deleteProductById, total }) => {
-  //clear with alert
-
   const clearWithAlert = () => {
     Swal.fire({
       title: "¿Seguro que desea eliminar items del carrito?",
       showConfirmButton: true,
       showDenyButton: true,
-      showCancelButton: false,
       confirmButtonText: "Si, eliminar",
-      denyButtonText: `Cancelar`,
+      denyButtonText: "Cancelar",
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         clearCart();
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Items del carrito, eliminados",
+          title: "Items del carrito eliminados",
         });
-      } else if (result.isDenied) {
       }
     });
   };
 
   return (
-    <div>
-      <h2>Este es el carrito</h2>
-      {cart.map((product) => {
-        return (
-          <div key={product.id}>
-            <h2>Titulo: {product.title}</h2>
-            <h3>Precio: {product.price}</h3>
-            <h3>Cantidad: {product.quantity}</h3>
-            <h3>Subtotal: {product.price * product.quantity}</h3>
-            <Button onClick={() => deleteProductById(product.id)}>
-              Eliminar
-            </Button>
+    <div className="cart-container">
+      <div className="cart-items">
+        {cart.map((product) => (
+          <div className="cart-item" key={product.id}>
+            <img src={product.img} alt={product.title} className="cart-image" />
+            <div className="cart-item-details">
+              <h3 className="cart-item-title">{product.title}</h3>
+              <p>Precio: S/. {product.price}</p>
+              <p>Cantidad: {product.quantity}</p>
+              <p>Subtotal: S/. {product.price * product.quantity}</p>
+              <Button
+                onClick={() => deleteProductById(product.id)}
+                variant="contained"
+                color="error"
+              >
+                Eliminar
+              </Button>
+            </div>
           </div>
-        );
-      })}
+        ))}
+      </div>
+
       {total > 0 && (
-        <>
-          <Button
-            sx={{ marginTop: 20 }}
-            variant="contained"
-            onClick={clearWithAlert}
-          >
+        <div className="cart-actions">
+          <Button variant="contained" onClick={clearWithAlert} color="error">
             Limpiar Carrito
           </Button>
-          <Link to={"/checkout"}>
-            <Button sx={{ marginTop: 20 }} variant="contained">
+          <Link to="/checkout">
+            <Button variant="contained" color="primary">
               Finalizar Compra
             </Button>
           </Link>
-        </>
+          <h2 className="cart-total">Total a pagar: S/. {total}</h2>
+        </div>
       )}
 
-      {total > 0 ? (
-        <h2>El total a pagar es: S/. {total}</h2>
-      ) : (
-        <h2>No tienes items en el carrito todavia.</h2>
+      {total === 0 && (
+        <h2 style={{ height: "600px" }}>
+          No tienes items en el carrito todavía.
+        </h2>
       )}
     </div>
   );
