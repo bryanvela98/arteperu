@@ -3,7 +3,7 @@ import CartWidget from "../../common/cartWidget/CartWidget";
 import { Link } from "react-router-dom";
 import ToogleButom from "../../common/toogleButom/ToogleButom";
 import { CiMenuBurger } from "react-icons/ci";
-import "./Navbar.css";
+import "./navbar.css";
 
 const Navbar = ({ darkMode, tooggleMode, categories }) => {
   const [menuOpen, setMenuOpen] = useState(false);
