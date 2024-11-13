@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ItemListContainer from "./components/pages/itemListContainer/itemListContainer";
+import ItemListContainer from "./components/pages/itemListContainer/ItemListContainer";
 import NavbarContainer from "./components/layouts/navbar/NavbarContainer";
 import ItemDetailContainer from "./components/pages/itemDetail/ItemDetailContainer";
 
