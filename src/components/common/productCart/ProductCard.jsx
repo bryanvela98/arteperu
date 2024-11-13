@@ -11,22 +11,35 @@ import { Link } from "react-router-dom";
 
 const ProductCard = ({ title, price, description, img, id }) => {
   return (
-    <Card sx={{ width: 350, height: 350 }}>
-      <CardMedia component="img" alt="green iguana" height="140" image={img} />
+    <Card className="product-card">
+      <CardMedia
+        component="img"
+        alt={title}
+        height="180"
+        image={img}
+        className="product-image"
+      />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          className="product-title"
+        >
           {title}
         </Typography>
-        <Typography variant="body2" sx={{ color: "text.secondary" }}>
+        <Typography variant="body2" className="product-description">
           {description}
         </Typography>
-        <Typography variant="body2" sx={{ color: "text.secondary" }}>
-          {price}
+        <Typography variant="h6" className="product-price">
+          S/.{price}
         </Typography>
       </CardContent>
       <CardActions>
-        <Link to={`/productDetail/${id}`}>
-          <Button size="small">Ver detalle</Button>
+        <Link to={`/productDetail/${id}`} className="product-link">
+          <Button variant="outlined" size="small" className="product-button">
+            Ver detalle
+          </Button>
         </Link>
       </CardActions>
     </Card>

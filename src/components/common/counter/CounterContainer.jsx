@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Counter from "./Counter";
+import { toast } from "sonner";
 
 const CounterContainer = ({ onAdd, stock, totalItems }) => {
   // States
@@ -10,7 +11,10 @@ const CounterContainer = ({ onAdd, stock, totalItems }) => {
     if (counter < stock) {
       setCounter(counter + 1);
     } else {
-      alert("Se supero el stock");
+      toast.error("Se supero el Stock, no se puede agregar mas unidades.", {
+        closeButton: true,
+        position: "bottom-center",
+      });
     }
   };
 
@@ -18,7 +22,10 @@ const CounterContainer = ({ onAdd, stock, totalItems }) => {
     if (counter > 1) {
       setCounter(counter - 1);
     } else {
-      alert("No puedes agregar menos de uno.");
+      toast.error("No se pueden agregar menos de 1 unidad.", {
+        closeButton: true,
+        position: "bottom-center",
+      });
     }
   };
   let childProps = {

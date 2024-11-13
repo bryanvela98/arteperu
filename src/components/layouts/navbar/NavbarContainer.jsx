@@ -1,11 +1,9 @@
 import { useState } from "react";
 import "./navbar.css";
-import Navbar from "./navbar";
+import Navbar from "./Navbar";
 import { categories } from "./categories";
 
-const NavbarContainer = () => {
-  const [darkMode, setDarkMode] = useState(true);
-
+const NavbarContainer = ({ darkMode, setDarkMode }) => {
   //Fun that makes switch
   const tooggleMode = () => {
     setDarkMode(!darkMode);

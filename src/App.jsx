@@ -1,8 +1,6 @@
 import { useState } from "react";
 import ItemListContainer from "./components/pages/itemListContainer/itemListContainer";
 import NavbarContainer from "./components/layouts/navbar/NavbarContainer";
-import CounterContainer from "./components/common/counter/CounterContainer";
-import PruebaGrid from "./components/common/pruebaGrid/PruebaGrid";
 import ItemDetailContainer from "./components/pages/itemDetail/ItemDetailContainer";
 
 /* Routing */
@@ -13,43 +11,21 @@ import Events from "./components/pages/events/events";
 import { CartContextProvider } from "./context/CartContext";
 import { Toaster } from "sonner";
 import CheckoutContainer from "./components/pages/checkout/CheckoutContainer";
+import Footer from "./components/layouts/footer/Footer";
 
 function App() {
-  const [montarComponente, setMontarComponente] = useState(true); //boolean
-  const montarYdesmontar = () => {
-    setMontarComponente(!montarComponente);
-  };
+  const [darkMode, setDarkMode] = useState(true); //boolean
 
-  const [saludo, setSaludo] = useState("hola");
-  const cambiarSaludo = () => {
-    if (saludo === "hola") {
-      setSaludo("chau");
-    } else {
-      setSaludo("hola");
-    }
-  };
   return (
-    <div>
-      {/*       {montarComponente ? <ItemListContainer /> : null}
-      <button onClick={montarYdesmontar}>Montar/desmontar</button>
-      <button onClick={cambiarSaludo}>Cambiar Saludo</button>
-      <h4>{saludo}</h4> */}
-      {/* <ItemListContainer /> */}
-      {/* <ItemDetailContainer /> */}
-      {/* <Todos /> */}
-      {/* <Users /> */}
-      {/* <Comments /> */}
-      {/* <CounterContainer /> */}
-      {/* <PruebaGrid /> */}
-
+    <div style={{ backgroundColor: darkMode ? "#856c67" : "white" }}>
       {/* routing system*/}
       <BrowserRouter>
         {/* Here you can set toaster default props */}
-        <Toaster richColors toastOptions={{ duration: 1000 }} />
+        <Toaster richColors toastOptions={{ duration: 4000 }} />
         {/* Must be implemented on App.jsx to be able to use Sonner */}
 
         <CartContextProvider>
-          <NavbarContainer />
+          <NavbarContainer darkMode={darkMode} setDarkMode={setDarkMode} />
           <Routes>
             <Route path={"/"} element={<ItemListContainer />} />
             {/* root route */}
@@ -72,6 +48,7 @@ function App() {
             <Route path={"*"} element={<h2>404 not found</h2>} />
             {/* default not configured route */}
           </Routes>
+          <Footer />
         </CartContextProvider>
       </BrowserRouter>
     </div>

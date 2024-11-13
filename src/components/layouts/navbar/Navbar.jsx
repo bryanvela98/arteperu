@@ -1,32 +1,41 @@
+import { useState } from "react";
 import CartWidget from "../../common/cartWidget/CartWidget";
 import { Link } from "react-router-dom";
+import ToogleButom from "../../common/toogleButom/ToogleButom";
+import { CiMenuBurger } from "react-icons/ci";
+import "./Navbar.css";
 
 const Navbar = ({ darkMode, tooggleMode, categories }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <div className={darkMode ? "container-nav-dark" : "container-nav"}>
-      {/* logo or company name */}
-      <Link to="/">
-        <h3>Tienda Artesanias</h3>
-      </Link>
-      {/* list of clickeable categories */}
-      <ul>
-        {categories.map((category) => {
-          return (
-            <Link key={category.title} to={category.path}>
-              {category.title}
-            </Link>
-          );
-        })}
-      </ul>
-      <button onClick={tooggleMode}>Cambiar Modo</button>
+    <nav className="navbar">
+      <div className="navbar-container">
+        <Link to="/" className="navbar-logo">
+          <h3>Tienda Artesanias</h3>
+        </Link>
+        <CiMenuBurger
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="navbar-toggle"
+        />
 
-      <Link to="/events">Eventos</Link>
-
-      {/* widget shopping car */}
-      <Link to="/cart">
-        <CartWidget />
-      </Link>
-    </div>
+        <ul className={`navbar-links ${menuOpen ? "show" : ""}`}>
+          {categories.map((category) => (
+            <li key={category.title} className="navbar-item">
+              <Link to={category.path} className="navbar-link">
+                {category.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <div className="navbar-actions">
+          <ToogleButom darkMode={darkMode} tooggleMode={tooggleMode} />
+          <Link to="/cart" className="navbar-cart">
+            <CartWidget />
+          </Link>
+        </div>
+      </div>
+    </nav>
   );
 };
 

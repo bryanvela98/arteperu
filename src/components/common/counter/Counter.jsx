@@ -1,16 +1,23 @@
 import { Button } from "@mui/material";
+import "./Counter.css";
 
 const Counter = ({ counter, sumar, restar, onAdd }) => {
   return (
     <div>
-      <Button variant="contained" onClick={sumar}>
-        Sumar
-      </Button>
-      <h1>{counter} </h1>
-      <Button variant="contained" onClick={restar}>
-        Restar
-      </Button>
-      <Button variant="outlined" onClick={() => onAdd(counter)}>
+      <div className="container-main">
+        <Button size="small" variant="contained" onClick={sumar}>
+          +
+        </Button>
+        <h3>{counter} </h3>
+        <Button size="small" variant="contained" onClick={restar}>
+          -
+        </Button>
+      </div>
+      <Button
+        variant="contained"
+        color="success"
+        onClick={() => onAdd(counter)}
+      >
         Agregar al carrito
       </Button>
     </div>
