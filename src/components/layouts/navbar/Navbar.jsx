@@ -5,6 +5,7 @@ import ToogleButom from "../../common/toogleButom/ToogleButom";
 import { CiMenuBurger } from "react-icons/ci";
 import "./navbar.css";
 
+//Defining NavbarComponent
 const Navbar = ({ darkMode, tooggleMode, categories }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 

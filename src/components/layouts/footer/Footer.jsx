@@ -2,6 +2,7 @@ import { Box, Typography, Link, Stack } from "@mui/material";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import "./Footer.css";
 
+//Defining Footer Component
 const Footer = () => {
   return (
     <Box component="footer" className="footer">
